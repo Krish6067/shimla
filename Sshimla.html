@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Shimla - Queen of Hills</title>
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@400;600;800&display=swap"
+      rel="stylesheet">
+   <style>
+      :root {
+         --primary-color: #2e7d32;
+         --secondary-color: #e0f7fa;
+         --glass-bg: rgba(255, 255, 255, 0.15);
+         --glass-border: rgba(255, 255, 255, 0.2);
+         --text-dark: #333;
+         --text-light: #fff;
+         --blur-strength: 12px;
+      }
+
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+      }
+
+      body {
+         font-family: 'Lato', sans-serif;
+         background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+         background-size: 400% 400%;
+         animation: gradientBG 15s ease infinite;
+         color: var(--text-dark);
+         line-height: 1.6;
+         min-height: 100vh;
+      }
+
+      @keyframes gradientBG {
+         0% {
+            background-position: 0% 50%;
+         }
+
+         50% {
+            background-position: 100% 50%;
+         }
+
+         100% {
+            background-position: 0% 50%;
+         }
+      }
+
+      /* Fixed Background Image Overlay */
+      body::before {
+         content: "";
+         position: fixed;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         background: url('https://images.unsplash.com/photo-1562649846-ab413ca01712?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+         opacity: 0.3;
+         z-index: -1;
+         filter: grayscale(30%);
+      }
+
+      h1,
+      h2,
+      h3 {
+         font-family: 'Montserrat', sans-serif;
+         color: var(--text-dark);
+      }
+
+      a {
+         text-decoration: none;
+         color: inherit;
+         transition: all 0.3s ease;
+      }
+
+      /* Glassmorphism Classes */
+      .glass-panel {
+         background: var(--glass-bg);
+         backdrop-filter: blur(var(--blur-strength));
+         -webkit-backdrop-filter: blur(var(--blur-strength));
+         border: 1px solid var(--glass-border);
+         box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+         border-radius: 16px;
+      }
+
+      /* Header & Nav */
+      header {
+         position: fixed;
+         top: 0;
+         width: 100%;
+         z-index: 1000;
+         padding: 1rem 2rem;
+         transition: 0.3s;
+      }
+
+      nav {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         max-width: 1200px;
+         margin: 0 auto;
+         padding: 1rem 2rem;
+         background: rgba(255, 255, 255, 0.1);
+         backdrop-filter: blur(10px);
+         border-radius: 50px;
+         border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .logo {
+         font-size: 1.5rem;
+         font-weight: 800;
+         color: #fff;
+         text-transform: uppercase;
+         letter-spacing: 2px;
+      }
+
+      .nav-links a {
+         margin-left: 20px;
+         color: #fff;
+         font-weight: 600;
+         position: relative;
+      }
+
+      .nav-links a::after {
+         content: '';
+         position: absolute;
+         width: 0;
+         height: 2px;
+         bottom: -5px;
+         left: 0;
+         background-color: #fff;
+         transition: width 0.3s;
+      }
+
+      .nav-links a:hover::after {
+         width: 100%;
+      }
+
+      /* Hero Section */
+      .hero {
+         height: 100vh;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         text-align: center;
+         color: #fff;
+         padding-top: 80px;
+      }
+
+      .hero-content h1 {
+         font-size: 5rem;
+         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+         color: #fff;
+         margin-bottom: 1rem;
+         letter-spacing: 5px;
+         animation: fadeInDown 1s ease-out;
+      }
+
+      .hero-content p {
+         font-size: 1.5rem;
+         margin-bottom: 2rem;
+         animation: fadeInUp 1s ease-out 0.5s forwards;
+         opacity: 0;
+      }
+
+      .btn-explore {
+         padding: 1rem 2.5rem;
+         background: rgba(255, 255, 255, 0.2);
+         border: 1px solid rgba(255, 255, 255, 0.4);
+         border-radius: 30px;
+         color: #fff;
+         font-weight: bold;
+         font-size: 1.1rem;
+         backdrop-filter: blur(5px);
+         cursor: pointer;
+         transition: transform 0.3s, background 0.3s;
+         animation: fadeInUp 1s ease-out 1s forwards;
+         opacity: 0;
+      }
+
+      .btn-explore:hover {
+         background: rgba(255, 255, 255, 0.4);
+         transform: translateY(-3px);
+         color: #1a2a6c;
+      }
+
+      /* Main Content Container */
+      .container {
+         max-width: 1200px;
+         margin: 4rem auto;
+         padding: 0 20px;
+      }
+
+      .section-title {
+         text-align: center;
+         font-size: 3rem;
+         color: #fff;
+         margin-bottom: 3rem;
+         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Destinations Grid */
+      .places-grid {
+         display: grid;
+         grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+         gap: 2rem;
+      }
+
+      .place-card {
+         background: rgba(255, 255, 255, 0.85);
+         border-radius: 20px;
+         overflow: hidden;
+         transition: transform 0.4s ease, box-shadow 0.4s ease;
+         display: flex;
+         flex-direction: column;
+         position: relative;
+      }
+
+      .place-card:hover {
+         transform: translateY(-10px);
+         box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+         z-index: 10;
+      }
+
+      .place-img {
+         height: 250px;
+         overflow: hidden;
+      }
+
+      .place-img img {
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+         transition: transform 0.5s ease;
+      }
+
+      .place-card:hover .place-img img {
+         transform: scale(1.1);
+      }
+
+      .place-info {
+         padding: 2rem;
+         flex-grow: 1;
+      }
+
+      .place-info h2 {
+         font-size: 1.8rem;
+         margin-bottom: 1rem;
+         color: #1a2a6c;
+         border-bottom: 2px solid #e0e0e0;
+         padding-bottom: 0.5rem;
+         display: inline-block;
+      }
+
+      .place-details {
+         margin-top: 1rem;
+         font-size: 0.9rem;
+         color: #555;
+         background: rgba(0, 0, 0, 0.03);
+         padding: 1rem;
+         border-radius: 10px;
+      }
+
+      .place-details strong {
+         color: #b21f1f;
+      }
+
+      /* Footer */
+      footer {
+         margin-top: 4rem;
+         padding: 3rem;
+         background: rgba(0, 0, 0, 0.2);
+         backdrop-filter: blur(10px);
+         color: #fff;
+         text-align: center;
+      }
+
+      .footer-logo img {
+         width: 100px;
+         border-radius: 50%;
+         margin-bottom: 1rem;
+         border: 3px solid rgba(255, 255, 255, 0.3);
+      }
+
+      /* Animations */
+      @keyframes fadeInDown {
+         from {
+            opacity: 0;
+            transform: translateY(-30px);
+         }
+
+         to {
+            opacity: 1;
+            transform: translateY(0);
+         }
+      }
+
+      @keyframes fadeInUp {
+         from {
+            opacity: 0;
+            transform: translateY(30px);
+         }
+
+         to {
+            opacity: 1;
+            transform: translateY(0);
+         }
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+         .hero-content h1 {
+            font-size: 3rem;
+         }
+
+         .nav-links {
+            display: none;
+         }
+
+         /* Simplified for demo, ideally hamburger menu */
+         .places-grid {
+            grid-template-columns: 1fr;
+         }
+      }
+   </style>
+</head>
+
+<body>
+
+   <header>
+      <nav>
+         <div class="logo">Himachal Pradesh</div>
+         <div class="nav-links">
+            <a href="#">About</a>
+            <a href="#">Contact Us</a>
+            <a href="#">Terms</a>
+         </div>
+      </nav>
+   </header>
+
+   <main>
+      <section class="hero">
+         <div class="hero-content">
+            <h1>SHIMLA</h1>
+            <p>Discover the Queen of Hills in all its glory</p>
+            <a href="#places" class="btn-explore">Explore Places</a>
+         </div>
+      </section>
+
+      <section class="container" id="places">
+         <h1 class="section-title">Top 10 Tourist Places</h1>
+
+         <div class="places-grid">
+
+            <!-- Place 1 -->
+            <article class="place-card">
+               <div class="place-img">
+                  <img
+                     src="https://images.thrillophilia.com/image/upload/s--_G60VW3b--/c_fill,g_center,h_450,q_auto,w_753/dpr_1.5,f_auto,fl_strip_profile/v1/images/photos/000/107/702/original/1487074598_5753295101_112d2bd9d9_o.jpg.jpg"
+                     alt="The Ridge">
+               </div>
+               <div class="place-info">
+                  <h2>1. The Ridge</h2>
+                  <p>The epicentre of all tourist activities in Shimla. Easily connected to Mall Road, Scandal Point,
+                     and Lakkar Bazaar. It hosts the famous Summer Festival.</p>
+                  <div class="place-details">
+                     <p><strong>Timing:</strong> 8:00 AM - 6:00 PM</p>
+                     <p><strong>Cost:</strong> Free</p>
+                     <p><strong>Distance:</strong> 2.1 km from Bus Stand</p>
+                  </div>
+               </div>
+            </article>
+
+            <!-- Place 2 -->
+            <article class="place-card">
+               <div class="place-img">
+                  <img
+                     src="https://images.thrillophilia.com/image/upload/s--PhWZ7X89--/c_fill,g_center,h_450,q_auto,w_753/dpr_1.5,f_auto,fl_strip_profile/v1/images/photos/000/128/716/original/1528363972_shutterstock_602130401.jpg.jpg"
+                     alt="Mall Road">
+               </div>
+               <div class="place-info">
+                  <h2>2. The Mall Road</h2>
+                  <p>A vibrant lane for shopping, eateries, and cafes. No vehicles are allowed here, making it perfect
+                     for a leisurely stroll.</p>
+                  <div class="place-details">
+                     <p><strong>Timing:</strong> All Day</p>
+                     <p><strong>Cost:</strong> Free</p>
+                     <p><strong>Distance:</strong> 6 km from Bus Stand</p>
+                  </div>
+               </div>
+            </article>
+
+            <!-- Place 3 -->
+            <article class="place-card">
+               <div class="place-img">
+                  <img src="https://www.fabhotels.com/blog/wp-content/uploads/2018/10/1000x650-326.jpg"
+                     alt="Green Valley">
+               </div>
+               <div class="place-info">
+                  <h2>3. Green Valley</h2>
+                  <p>A popular shooting spot for Bollywood movies, offering endless scenic beauty and lush greenery.</p>
+                  <div class="place-details">
+                     <p><strong>Timing:</strong> 6:00 AM - 6:00 PM</p>
+                     <p><strong>Cost:</strong> Free</p>
+                     <p><strong>Location:</strong> Near Kufri</p>
+                  </div>
+               </div>
+            </article>
+
+            <!-- Place 4 -->
+            <article class="place-card">
+               <div class="place-img">
+                  <img
+                     src="https://images.thrillophilia.com/image/upload/s--NSWIVXF8--/c_fill,g_center,h_450,q_auto,w_753/dpr_1.5,f_auto,fl_strip_profile/v1/images/photos/000/128/140/original/1526284650_Beautiful-View-Of-The-Christ-Church-Shimla.jpg.jpg"
+                     alt="Christ Church">
+               </div>
+               <div class="place-info">
+                  <h2>4. Christ Church</h2>
+                  <p>The second oldest church in North India, built in 1857. A majestic neo-gothic structure.</p>
+                  <div class="place-details">
+                     <p><strong>Timing:</strong> 8:00 AM - 6:00 PM</p>
+                     <p><strong>Cost:</strong> Free</p>
+                     <p><strong>Location:</strong> The Ridge</p>
+                  </div>
+               </div>
+            </article>
+
+            <!-- Place 5 -->
+            <article class="place-card">
+               <div class="place-img">
+                  <img src="https://www.fabhotels.com/blog/wp-content/uploads/2018/10/1000x650-327.jpg"
+                     alt="Institute of Advanced Study">
+               </div>
+               <div class="place-info">
+                  <h2>5. Indian Institute of Advanced Study</h2>
+                  <p>Formerly the Viceregal Lodge, this historic building is a marvel of Victorian architecture.</p>
+                  <div class="place-details">
+                     <p><strong>Timing:</strong> Tue-Sun, 9AM - 5PM</p>
+                     <p><strong>Entry:</strong> ₹40 (Indians), ₹85 (Foreigners)</p>
+                     <p><strong>Note:</strong> Closed on Mondays</p>
+                  </div>
+               </div>
+            </article>
+
+            <!-- Place 6 -->
+            <article class="place-card">
+               <div class="place-img">
+                  <img src="https://www.fabhotels.com/blog/wp-content/uploads/2018/10/1000x650-329.jpg"
+                     alt="Himachal State Museum">
+               </div>
+               <div class="place-info">
+                  <h2>6. Himachal State Museum</h2>
+                  <p>Preserves the rich cultural heritage of the state with miniature paintings, sculptures, and coins.
+                  </p>
+                  <div class="place-details">
+                     <p><strong>Timing:</strong> 10:00 AM - 5:00 PM (Closed Mon)</p>
+                     <p><strong>Entry:</strong> ₹10 (Indians), ₹50 (Foreigners)</p>
+                  </div>
+               </div>
+            </article>
+
+            <!-- Place 7 -->
+            <article class="place-card">
+               <div class="place-img">
+                  <img src="https://www.fabhotels.com/blog/wp-content/uploads/2018/10/1000x650-332.jpg"
+                     alt="Chadwick Falls">
+               </div>
+               <div class="place-info">
+                  <h2>7. Chadwick Falls</h2>
+                  <p>Nestled in Glen Forests, this waterfall cascades down 86 meters. Best visited during monsoons.</p>
+                  <div class="place-details">
+                     <p><strong>Timing:</strong> 6:00 AM - 6:00 PM</p>
+                     <p><strong>Best time:</strong> June to September</p>
+                  </div>
+               </div>
+            </article>
+
+            <!-- Place 8 -->
+            <article class="place-card">
+               <div class="place-img">
+                  <img
+                     src="https://img.traveltriangle.com/blog/wp-content/tr:w-400,h-250/uploads/2015/06/Jakhoo-hill.jpg"
+                     alt="Jakhoo Hill">
+               </div>
+               <div class="place-info">
+                  <h2>8. Jakhoo Hill</h2>
+                  <p>Highest peak in Shimla (8000 ft) featuring a giant 108 ft Hanuman statue. Great for trekking.</p>
+                  <div class="place-details">
+                     <p><strong>Timing:</strong> 7:00 AM - 8:00 PM</p>
+                     <p><strong>Activity:</strong> Trekking, Religious</p>
+                  </div>
+               </div>
+            </article>
+
+            <!-- Place 9 -->
+            <article class="place-card">
+               <div class="place-img">
+                  <img src="https://www.transindiatravels.com/wp-content/uploads/kufri-2.jpg" alt="Kufri">
+               </div>
+               <div class="place-info">
+                  <h2>9. Kufri</h2>
+                  <p>An adventure hub located 17km from Shimla. Famous for yak rides, skiing, and stunning views.</p>
+                  <div class="place-details">
+                     <p><strong>Timing:</strong> Open all day</p>
+                     <p><strong>Distance:</strong> 17 km from Shimla</p>
+                  </div>
+               </div>
+            </article>
+
+            <!-- Place 10 -->
+            <article class="place-card">
+               <div class="place-img">
+                  <img src="https://www.transindiatravels.com/wp-content/uploads/annandale.jpg" alt="Annandale">
+               </div>
+               <div class="place-info">
+                  <h2>10. Annandale</h2>
+                  <p>A flat terrain that served as a playground for the British. Houses an Army Museum and Golf Course.
+                  </p>
+                  <div class="place-details">
+                     <p><strong>Museum Timing:</strong> 10AM-2PM & 3PM-5PM</p>
+                     <p><strong>Distance:</strong> 4 km from Ridge</p>
+                  </div>
+               </div>
+            </article>
+
+         </div>
+      </section>
+   </main>
+
+   <footer>
+      <div class="footer-logo">
+         <img src="https://api.freelogodesign.org/files/5c8f7e390cce4bdb8eabd2a1c77d2b09/thumb/logo_200x200.png?v=0.jpg"
+            alt="Logo">
+      </div>
+      <p>© Copyright CodeLiber 2022 | All Rights Reserved</p>
+   </footer>
+
+</body>
+
+</html>
